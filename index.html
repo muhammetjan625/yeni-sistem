@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gelir Gider Takip Sistemi</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Gelir - Gider Takip Sistemi</h1>
+    <button id="toggle-dark-mode">🌙 Tema</button>
+
+    <form id="transaction-form">
+      <input type="text" id="title" placeholder="Başlık veya ürün adı" required />
+      <input type="number" id="amount" placeholder="Miktar" required />
+      <select id="category">
+        <option value="Yiyecek">🍔 Yiyecek</option>
+        <option value="İçecek">🥤 İçecek</option>
+        <option value="Fatura">💡 Fatura</option>
+        <option value="Sigorta">🛡️ Sigorta</option>
+        <option value="Alışveriş">🛍️ Alışveriş</option>
+        <option value="Maaş">💼 Maaş</option>
+        <option value="Diğer">📦 Diğer</option>
+      </select>
+      <select id="type">
+        <option value="income">Gelir</option>
+        <option value="expense">Gider</option>
+      </select>
+      <button type="submit">Ekle</button>
+    </form>
+
+    <div class="filter">
+      <label for="filter-select">Filtre:</label>
+      <select id="filter-select">
+        <option value="all">Tümü</option>
+        <option value="income">Sadece Gelir</option>
+        <option value="expense">Sadece Gider</option>
+      </select>
+    </div>
+
+<button id="clear-btn" class="clear-btn">
+  🗑️ Tüm Kayıtları Temizle
+</button>
+
+
+    <div class="totals">
+      <div class="income">Gelir: <span id="income">0 TL</span></div>
+      <div class="expense">Gider: <span id="expense">0 TL</span></div>
+      <div class="balance">Bakiye: <span id="balance">0 TL</span></div>
+    </div>
+
+    <ul id="transaction-list"></ul>
+
+    <canvas id="categoryChart" width="400" height="400"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
