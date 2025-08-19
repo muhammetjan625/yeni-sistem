@@ -1,37 +1,28 @@
-<<<<<<< HEAD
-# yeni-sistem
-=======
-# Gelir - Gider Takip Sistemi
 
-Bu proje, **kişisel gelir ve giderlerinizi takip etmenizi sağlayan basit ve modern bir web uygulamasıdır**. Firebase Firestore kullanılarak veriler bulutta saklanır ve tüm işlemler gerçek zamanlı olarak güncellenir.
+# Gelir Gider Takip Sistemi
+Bu proje, kullanıcıların gelir ve giderlerini takip edebileceği basit bir web uygulamasıdır. Firebase Firestore ve Authentication kullanılarak veri yönetimi sağlanmıştır.
+## Mevcut Özellikler
+- Gelir ve gider ekleme, listeleme ve filtreleme
+- Dikey bar grafiği ile kategorilere göre gelir/gider görselleştirme
+- Dark mode (siyah tema)
+- Admin paneli ile kullanıcı ve işlem yönetimi
+- Firebase Authentication ile anonim veya email login
+- Custom modal uyarılar
 
----
+## Bilinen Eksikler / Geliştirme Planı
 
-## Özellikler
-
-- **Gelir ve Gider Takibi:** Kategori, başlık ve miktar ile işlemleri ekleyebilir, silebilir ve düzenleyebilirsiniz.  
-- **Toplam Hesaplama:** Gelir, gider ve bakiye otomatik olarak hesaplanır.  
-- **Filtreleme:** Sadece gelir, sadece gider veya tüm işlemleri görüntüleyebilirsiniz.  
-- **Modern Grafik:** Kategori bazlı gelir ve giderleri **dikey bar grafiği** ile görüntüler.  
-- **Dark Mode:** Koyu ve açık tema desteği.  
-- **Mobil Uyumluluk:** iOS benzeri kaydırma efektleri ve responsive tasarım.  
-- **Anonim Giriş:** Firebase üzerinden anonim giriş ile veri güvenliği sağlanır.  
-
----
-
-## Kullanılan Teknolojiler
-
-- HTML, CSS, JavaScript (Vanilla)
-- [Firebase Firestore](https://firebase.google.com/docs/firestore)
-- [Firebase Auth](https://firebase.google.com/docs/auth)
-- [Chart.js](https://www.chartjs.org/)
-
----
+- Kullanıcı bazlı izin sistemi henüz tamamlanmadı
+- İşlem düzenleme ve silme işlemleri admin paneli için daha fonksiyonel hale getirilecek
+- Responsive tasarım iyileştirmeleri yapılacak
+- Daha fazla istatistik ve raporlama eklenebilir
 
 ## Kurulum
-
-1. Projeyi bilgisayarınıza indirin veya klonlayın:
-
-```bash
-git clone https://github.com/kullaniciadi/gelir-gider-takip.git
->>>>>>> 4b0f4ddee826e7faa3f7f2cbe6e8b5863ccb3251
+1. Projeyi klonlayın:
+   ```bash
+   git clone https://github.com/muhammetjan625/yeni-sistem.git
+````
+2. `index.html` veya `adminpanel.html` üzerinden uygulamayı çalıştırın.
+3. Firebase yapılandırmasını kendi projenizle değiştirin.
+## Notlar
+Bu proje geliştirmeye açık ve eksik özellikler içerebilir. Güncellemeler devam edecektir.
+```
