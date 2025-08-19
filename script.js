@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 // Firebase yapılandırması
@@ -17,9 +17,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const transactionsColRef = collection(db, "transactions");
+signInAnonymously(auth).catch(err=>console.error(err));
 
-// DOM elemanları
 const form = document.getElementById("transaction-form");
 const titleInput = document.getElementById("title");
 const amountInput = document.getElementById("amount");
@@ -30,12 +29,10 @@ const incomeDisplay = document.getElementById("income");
 const expenseDisplay = document.getElementById("expense");
 const balanceDisplay = document.querySelector(".balance span");
 const filterSelect = document.getElementById("filter-select");
-const toggleDarkMode = document.getElementById("toggle-dark-mode");
 const ctx = document.getElementById("categoryChart").getContext("2d");
 
 let transactions = [];
 let categoryChart;
-let editingId = null;
 
 // Kategori renkleri
 function getCategoryColors() {
@@ -60,18 +57,8 @@ function renderTransactions(filter = "all") {
         if (filter === "all" || filter === t.type) {
             const li = document.createElement("li");
             li.className = "transaction-item";
-            li.setAttribute("data-id", t.id);
-
-            const contentDiv = document.createElement("div");
-            contentDiv.className = "transaction-content";
-            contentDiv.innerHTML = `<span>${t.category} | ${t.title}</span><span>${t.amount.toFixed(2)} TL</span>`;
-            contentDiv.classList.add(`category-${t.category}`);
-
-            const actionsDiv = document.createElement("div");
-            actionsDiv.className = "transaction-actions";
-
-            li.appendChild(contentDiv);
-            li.appendChild(actionsDiv);
+            li.innerHTML = `<span>${t.category} | ${t.title}</span> <span>${t.amount.toFixed(2)} TL</span>`;
+            li.classList.add(`category-${t.category}`);
             transactionList.appendChild(li);
         }
         if (t.type === "income") totalIncome += t.amount;
@@ -117,10 +104,11 @@ function renderCategoryChart() {
 }
 
 // Firebase verilerini dinle
+const transactionsColRef = collection(db, "transactions");
 onSnapshot(query(transactionsColRef), snapshot => {
     transactions = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
     renderTransactions(filterSelect.value);
-}, error => { console.error("Firestore verileri çekilirken hata:", error); });
+}, error => console.error("Firestore verileri çekilirken hata:", error));
 
 // Form gönderimi
 form.addEventListener("submit", async e => {
@@ -133,22 +121,10 @@ form.addEventListener("submit", async e => {
     if(!title || isNaN(amount) || amount <= 0){ alert("Geçerli veri giriniz"); return; }
 
     try{
-        if(editingId){
-            await updateDoc(doc(db,"transactions",editingId),{title,amount,type,category});
-            editingId=null;
-            form.querySelector("button[type='submit']").textContent="Ekle";
-        } else{
-            await addDoc(transactionsColRef,{title,amount,type,category,timestamp:Date.now()});
-        }
+        await addDoc(transactionsColRef,{title,amount,type,category,timestamp:Date.now()});
         form.reset();
     } catch(e){ console.error(e); alert("Hata oluştu"); }
 });
 
 // Filtre
 filterSelect.addEventListener("change", ()=>{ renderTransactions(filterSelect.value); });
-
-// Dark mode
-toggleDarkMode.addEventListener("click", ()=>{ document.body.classList.toggle("dark"); });
-
-// Anonymous login
-signInAnonymously(auth).catch(err=>console.error("Anon auth hata:",err));

@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Paneli</title>
-  <link rel="stylesheet" href="adminpanel.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="adminpanel.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Admin Paneli</h1>
-    
-    <div id="login-container">
-      <h2>Giriş Yap</h2>
-      <form id="login-form">
-        <input type="email" id="email" placeholder="E-posta" required />
-        <input type="password" id="password" placeholder="Şifre" required />
-        <button type="submit">Giriş Yap</button>
-      </form>
-    </div>
-    
-    <div id="admin-panel" class="hidden">
-      <h2>Yönetici İşlemleri</h2>
-      <button id="logout-btn">Çıkış Yap</button>
+    <div class="container">
+        <h1>Admin Paneli</h1>
 
-      <div class="lists">
-        <div>
-          <h3>Kullanıcılar</h3>
-          <ul id="users-list"></ul>
-        </div>
-        <div>
-          <h3>İşlemler</h3>
-          <ul id="transactions-list"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
+        <button id="logout-btn">Çıkış Yap</button>
 
-  <script type="module" src="adminpanel.js"></script>
+        <div class="lists">
+            <div>
+                <h3>Kullanıcılar</h3>
+                <ul id="users-list"></ul>
+            </div>
+            <div>
+                <h3>İşlemler</h3>
+                <ul id="transactions-list"></ul>
+            </div>
+        </div>
+
+        <div class="transaction-form-container">
+            <h3>Yeni İşlem Ekle</h3>
+            <form id="transaction-form">
+                <input type="text" id="title" placeholder="Başlık veya ürün adı" required />
+                <input type="number" id="amount" placeholder="Miktar" required />
+                <select id="category">
+                    <option value="Yiyecek">🍔 Yiyecek</option>
+                    <option value="İçecek">🥤 İçecek</option>
+                    <option value="Fatura">💡 Fatura</option>
+                    <option value="Sigorta">🛡️ Sigorta</option>
+                    <option value="Alışveriş">🛍️ Alışveriş</option>
+                    <option value="Maaş">💼 Maaş</option>
+                    <option value="Diğer">📦 Diğer</option>
+                </select>
+                <select id="type">
+                    <option value="income">Gelir</option>
+                    <option value="expense">Gider</option>
+                </select>
+                <button type="submit">Ekle</button>
+            </form>
+        </div>
+
+        <canvas id="categoryChart" width="400" height="400"></canvas>
+    </div>
+
+    <script type="module" src="adminpanel.js"></script>
 </body>
 </html>

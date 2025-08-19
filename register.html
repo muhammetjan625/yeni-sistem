@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayıt Ol</title>
-    <link rel="stylesheet" href="auth.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayıt Ol - Gelir Gider Sistemi</title>
+<link rel="stylesheet" href="auth.css">
 </head>
 <body>
-    <div class="auth-container">
-        <h1>Kayıt Ol</h1>
-        <form id="register-form">
-            <input type="text" id="reg-username" placeholder="Kullanıcı Adı" required>
-            <input type="email" id="reg-email" placeholder="E-posta" required>
-            <input type="password" id="reg-password" placeholder="Şifre" required>
-            <button type="submit">Kayıt Ol</button>
-        </form>
-        <p>Zaten hesabın var mı? <a href="login.html">Giriş Yap</a></p>
-    </div>
-
-    <script type="module" src="register.js"></script>
+<div class="auth-container">
+    <h1>Kayıt Ol</h1>
+    <form id="register-form">
+        <input type="text" id="name" placeholder="Ad Soyad" required />
+        <input type="email" id="email" placeholder="E-posta" required />
+        <input type="password" id="password" placeholder="Şifre" required />
+        <button type="submit">Kayıt Ol</button>
+    </form>
+    <p>Zaten hesabın var mı? <a href="login.html">Giriş Yap</a></p>
+</div>
+<script type="module" src="register.js"></script>
 </body>
 </html>
